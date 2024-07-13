@@ -1,0 +1,241 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Mendix.StudioPro.ExtensionsAPI.Internal</name>
+    </assembly>
+    <members>
+        <member name="T:Mendix.StudioPro.ExtensionsAPI.Services.IAnalyticsService">
+            <summary>
+            Provides access to the global analytics service of Studio Pro to record events from extensions.
+            </summary>
+        </member>
+        <member name="M:Mendix.StudioPro.ExtensionsAPI.Services.IAnalyticsService.SendEvent(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Send an event to analytics service and log it locally. In MxBuild the event is only logged.
+            </summary>
+            <remarks>Please consider user's privacy when composing <paramref name="eventData"/>.</remarks>
+            <param name="eventName">Name of the event to send. Use format like <c>FEATURE_USED</c>.</param>
+            <param name="eventData">Optional additional event data.</param>
+        </member>
+        <member name="T:Mendix.StudioPro.ExtensionsAPI.UI.Document.AddDocumentMenuExtension">
+            <summary>
+            Base class for an extension that introduces new items into "add document" context menu of App Explorer (also accessible through File > New).
+            </summary>
+        </member>
+        <member name="M:Mendix.StudioPro.ExtensionsAPI.UI.Document.AddDocumentMenuExtension.GetItems">
+            <summary>
+            Return <see cref="T:Mendix.StudioPro.ExtensionsAPI.UI.Document.AddDocumentMenuItem"/>s introduced by this extension.
+            </summary>
+            <returns>A list of <see cref="T:Mendix.StudioPro.ExtensionsAPI.UI.Document.AddDocumentMenuItem"/> introduced by this extension.</returns>
+            <remarks>This method is called every time before showing a list of items to Studio Pro user.</remarks>
+        </member>
+        <member name="T:Mendix.StudioPro.ExtensionsAPI.UI.Document.AddDocumentMenuItem">
+            <summary>
+            "Add ..." item in context menu of Project Explorer or its "Add other" sub-menu (also accessible through File > New).
+            </summary>
+            <param name="DocumentTypeCaption">Caption of the type of a document that this action will create. It must be in the form like "Building block".</param>
+            <param name="Icon">Optional icon displayed next to the item.</param>
+            <param name="Category">
+            Group to which the item belongs. It can either be an existing category ("Common", "Resources", "Services", "Page resources") or a new one (any other value
+            of <paramref name="Category"/>).
+            </param>
+        </member>
+        <member name="M:Mendix.StudioPro.ExtensionsAPI.UI.Document.AddDocumentMenuItem.#ctor(System.String,Eto.Drawing.Image,System.String)">
+            <summary>
+            "Add ..." item in context menu of Project Explorer or its "Add other" sub-menu (also accessible through File > New).
+            </summary>
+            <param name="DocumentTypeCaption">Caption of the type of a document that this action will create. It must be in the form like "Building block".</param>
+            <param name="Icon">Optional icon displayed next to the item.</param>
+            <param name="Category">
+            Group to which the item belongs. It can either be an existing category ("Common", "Resources", "Services", "Page resources") or a new one (any other value
+            of <paramref name="Category"/>).
+            </param>
+        </member>
+        <member name="P:Mendix.StudioPro.ExtensionsAPI.UI.Document.AddDocumentMenuItem.DocumentTypeCaption">
+            <summary>Caption of the type of a document that this action will create. It must be in the form like "Building block".</summary>
+        </member>
+        <member name="P:Mendix.StudioPro.ExtensionsAPI.UI.Document.AddDocumentMenuItem.Icon">
+            <summary>Optional icon displayed next to the item.</summary>
+        </member>
+        <member name="P:Mendix.StudioPro.ExtensionsAPI.UI.Document.AddDocumentMenuItem.Category">
+            <summary>
+            Group to which the item belongs. It can either be an existing category ("Common", "Resources", "Services", "Page resources") or a new one (any other value
+            of <paramref name="Category"/>).
+            </summary>
+        </member>
+        <member name="P:Mendix.StudioPro.ExtensionsAPI.UI.Document.AddDocumentMenuItem.TryCreateDocument">
+             <summary>
+             Action to execute when "add document" item is clicked. It can return newly created document or <c>null</c> if creation was canceled.
+             </summary>
+             <remarks>
+             <see cref="P:Mendix.StudioPro.ExtensionsAPI.UI.Document.AddDocumentMenuItem.TryCreateDocument"/> receives <see cref="T:Mendix.StudioPro.ExtensionsAPI.Model.Projects.IFolderBase"/> (<see cref="T:Mendix.StudioPro.ExtensionsAPI.Model.Projects.IFolder"/> or <see cref="T:Mendix.StudioPro.ExtensionsAPI.Model.Projects.IModule"/>) that was selected as a location
+             for to-be-created document.
+            
+             If a document is successfully created, it is immediately opened in the editor.
+             </remarks>
+        </member>
+        <member name="T:Mendix.StudioPro.ExtensionsAPI.UI.Document.AppExplorerExtension`1">
+            <summary>
+            Base class for an extension that introduces a support for a new document type in the App Explorer.
+            </summary>
+            <typeparam name="TDocument">Type of the document that this extension handles.</typeparam>
+        </member>
+        <member name="M:Mendix.StudioPro.ExtensionsAPI.UI.Document.AppExplorerExtension`1.EditDocument(`0)">
+            <summary>
+            Create <see cref="T:Mendix.StudioPro.ExtensionsAPI.UI.Document.DocumentTabViewModel"/> when the <paramref name="document"/> is opened.
+            </summary>
+            <param name="document"><typeparamref name="TDocument"/> that is being opened by Studio Pro user.</param>
+            <returns><see cref="T:Mendix.StudioPro.ExtensionsAPI.UI.Document.DocumentTabViewModel"/> representing an editor for the <paramref name="document"/>.</returns>
+        </member>
+        <member name="M:Mendix.StudioPro.ExtensionsAPI.UI.Document.AppExplorerExtension`1.TryGetIcon(`0)">
+            <summary>
+            Icon to be used for a <paramref name="document"/> in the Project Explorer.
+            </summary>
+            <param name="document"><typeparamref name="TDocument"/> shown in the Project Explorer.</param>
+            <returns>
+            Icon to be displayed for this <paramref name="document"/>. Or <c>null</c> if no custom icon should be used.
+            </returns>
+        </member>
+        <member name="T:Mendix.StudioPro.ExtensionsAPI.UI.Document.DocumentTabViewModel">
+            <summary>
+            Representation of a <see href="https://docs.mendix.com/refguide/studio-pro-overview/#documents">document tab</see> - tab in the
+            <see href="https://docs.mendix.com/refguide/studio-pro-overview/#4-working-area">working area</see> of Studio Pro specialized in displaying content of
+            a specific <see cref="T:Mendix.StudioPro.ExtensionsAPI.Model.IAbstractUnit">document</see>.
+            </summary>
+            <remarks>Document tabs can be introduced through <see cref="T:Mendix.StudioPro.ExtensionsAPI.UI.Document.AppExplorerExtension`1"/>.</remarks>
+            <seealso cref="T:Mendix.StudioPro.ExtensionsAPI.UI.Tab.TabViewModel"/>
+        </member>
+        <member name="P:Mendix.StudioPro.ExtensionsAPI.UI.Document.DocumentTabViewModel.Controls">
+            <summary>
+            Content of the tab.
+            </summary>
+        </member>
+        <member name="P:Mendix.StudioPro.ExtensionsAPI.UI.Document.DocumentTabViewModelBase.FocusElement">
+            <summary>
+            Action to focus an element. It is triggered when a tab is opened or focused programmatically,
+            for example, when a Studio Pro user clicks a consistency error reported on the associated document.
+            </summary>
+        </member>
+        <member name="P:Mendix.StudioPro.ExtensionsAPI.UI.Document.DocumentTabViewModelBase.OnDocumentChanged">
+            <summary>
+            Unstable API. Might be removed in the future.
+            </summary>
+        </member>
+        <member name="T:Mendix.StudioPro.ExtensionsAPI.UI.Document.WebViewDocumentTabViewModel">
+            <summary>
+            Representation of a <see href="https://docs.mendix.com/refguide/studio-pro-overview/#documents">document tab</see> - tab in the
+            <see href="https://docs.mendix.com/refguide/studio-pro-overview/#4-working-area">working area</see> of Studio Pro specialized in displaying content of
+            a specific <see cref="T:Mendix.StudioPro.ExtensionsAPI.Model.IAbstractUnit">document</see>.
+            This document tab is meant to contain a <see cref="T:Mendix.StudioPro.ExtensionsAPI.UI.WebView.IWebView"/>.
+            </summary>
+            <remarks>Document tabs can be introduced through <see cref="T:Mendix.StudioPro.ExtensionsAPI.UI.Document.AppExplorerExtension`1"/>.</remarks>
+            <seealso cref="T:Mendix.StudioPro.ExtensionsAPI.UI.Tab.TabViewModel"/>
+        </member>
+        <member name="T:Mendix.StudioPro.ExtensionsAPI.UI.Events.UserSignedIn">
+            <summary>
+            An event that occurs after the user signed in.
+            </summary>
+        </member>
+        <member name="T:Mendix.StudioPro.ExtensionsAPI.UI.Events.UserSignedOut">
+            <summary>
+            An event that occurs after the user signed out.
+            </summary>
+        </member>
+        <member name="T:Mendix.StudioPro.ExtensionsAPI.UI.Events.UserSigningOut">
+            <summary>
+                An event that occurs at the start of the user sign-out process.
+            </summary>
+        </member>
+        <member name="T:Mendix.StudioPro.ExtensionsAPI.UI.Services.IUserAuthenticationService">
+            <summary>
+            Provides access to information about logged in user.
+            </summary>
+        </member>
+        <member name="M:Mendix.StudioPro.ExtensionsAPI.UI.Services.IUserAuthenticationService.RetrieveCredentialsOrSignInAsync">
+            <summary>
+            Retrieve valid credentials of Studio Pro user. If an authentication has expired and cannot be refreshed automatically,
+            or user is not currently logged in, then a blocking "Sign In" dialog is shown.
+            </summary>
+            <returns>
+            A task that is completed when authentication process is completed, fails, or aborted by the user. It resolves with the user's credentials or with
+            <c>null</c> if authentication failed, e.g. due to network error, or was aborted by the user.
+            </returns>
+        </member>
+        <member name="M:Mendix.StudioPro.ExtensionsAPI.UI.Services.IUserAuthenticationService.TryRetrieveCredentialsAsync">
+            <summary>
+            Retrieve valid credentials of Studio Pro user, if user is authenticated. If an authentication has expired, Studio Pro will attempt to refresh it
+            without any user interaction.
+            </summary>
+            <returns>
+            A task that is completed when authentication process is completed. It resolves with the user's credentials or with <c>null</c> if failed.
+            </returns>
+        </member>
+        <member name="M:Mendix.StudioPro.ExtensionsAPI.UI.Services.IUserAuthenticationService.TryRetrieveUserName(System.String@)">
+            <summary>
+            Retrieve the username of Studio Pro user, if user is/was authenticated. The value is returned even if an authentication has expired, but not when
+            user has logged out. No user interaction or token refresh happens.
+            </summary>
+        </member>
+        <member name="T:Mendix.StudioPro.ExtensionsAPI.UI.TopBar.TopBarButtonViewModel">
+            <summary>
+            Representation of a button in the <see href="https://docs.mendix.com/refguide/studio-pro-overview/#2-top-bar">top bar</see> of Studio Pro.
+            </summary>
+            <remarks>Top bar button can be introduced through <see cref="T:Mendix.StudioPro.ExtensionsAPI.UI.TopBar.TopBarExtension"/>.</remarks>
+        </member>
+        <member name="M:Mendix.StudioPro.ExtensionsAPI.UI.TopBar.TopBarButtonViewModel.#ctor(Eto.Drawing.Image,System.Int32)">
+            <summary>
+            Construct new <see cref="T:Mendix.StudioPro.ExtensionsAPI.UI.TopBar.TopBarButtonViewModel"/>
+            </summary>
+            <param name="icon">Icon shown for the Toolbar Button. It can be changed later via the <see cref="P:Mendix.StudioPro.ExtensionsAPI.UI.TopBar.TopBarButtonViewModel.Icon"/> property.</param>
+            <param name="position">Position on the Toolbar Button among other buttons.</param>
+        </member>
+        <member name="P:Mendix.StudioPro.ExtensionsAPI.UI.TopBar.TopBarButtonViewModel.Position">
+            <summary>
+            Position of this button among other top bar buttons.
+            </summary>
+        </member>
+        <member name="P:Mendix.StudioPro.ExtensionsAPI.UI.TopBar.TopBarButtonViewModel.Icon">
+            <summary>
+            Icon shown for the button.
+            </summary>
+            <exception cref="T:System.ArgumentNullException">Passed value is null.</exception>
+        </member>
+        <member name="P:Mendix.StudioPro.ExtensionsAPI.UI.TopBar.TopBarButtonViewModel.Action">
+            <summary>
+            Action to execute when the button is clicked. Empty function by default.
+            </summary>
+            <exception cref="T:System.ArgumentNullException">Passed value is null.</exception>
+        </member>
+        <member name="P:Mendix.StudioPro.ExtensionsAPI.UI.TopBar.TopBarButtonViewModel.IsVisible">
+            <summary>
+            Whether the button is visible to the user. True by default.
+            </summary>
+        </member>
+        <member name="P:Mendix.StudioPro.ExtensionsAPI.UI.TopBar.TopBarButtonViewModel.IsEnabled">
+            <summary>
+            Whether the button is active and clickable by the user. True by default.
+            </summary>
+        </member>
+        <member name="P:Mendix.StudioPro.ExtensionsAPI.UI.TopBar.TopBarButtonViewModel.Tooltip">
+            <summary>
+            Optional tooltip shown when hovering the button. <c>null</c> by default.
+            </summary>
+        </member>
+        <member name="T:Mendix.StudioPro.ExtensionsAPI.UI.TopBar.TopBarExtension">
+            <summary>
+            Base class for an extension that introduces new buttons into <see href="https://docs.mendix.com/refguide/studio-pro-overview/#2-top-bar">top bar</see>.
+            </summary>
+        </member>
+        <member name="M:Mendix.StudioPro.ExtensionsAPI.UI.TopBar.TopBarExtension.GetButtons">
+            <summary>
+            Return <see cref="T:Mendix.StudioPro.ExtensionsAPI.UI.TopBar.TopBarButtonViewModel"/>s introduced by this extension.
+            </summary>
+            <returns>List of <see cref="T:Mendix.StudioPro.ExtensionsAPI.UI.TopBar.TopBarButtonViewModel"/> introduced by this extension.</returns>
+            <remarks>
+            This method is called once when the extension is initialized and must return all buttons including disabled and invisible ones.
+            Top bar button can be shown/hidden and enabled/disabled later using <see cref="P:Mendix.StudioPro.ExtensionsAPI.UI.TopBar.TopBarButtonViewModel.IsVisible"/> and
+            <see cref="P:Mendix.StudioPro.ExtensionsAPI.UI.TopBar.TopBarButtonViewModel.IsEnabled"/> properties.
+            </remarks>
+        </member>
+    </members>
+</doc>

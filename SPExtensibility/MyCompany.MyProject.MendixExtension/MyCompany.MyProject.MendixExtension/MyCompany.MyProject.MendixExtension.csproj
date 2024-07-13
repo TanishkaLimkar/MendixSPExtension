@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <BaseOutputPath>bin\Debug\</BaseOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Eto.Forms" Version="2.8.3" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2646-prerelease" />
+    <PackageReference Include="System.ComponentModel.Composition" Version="9.0.0-preview.5.24306.7" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
+    <PackageReference Include="System.Management" Version="9.0.0-preview.5.24306.7" />
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="9.0.0-preview.5.24306.7" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="8.0.0" />
+    <PackageReference Include="WKIS" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Mendix.StudioPro.ExtensionsAPI">
+      <HintPath>D:\ExtensionAPI\Mendix.StudioPro.ExtensionsAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="Mendix.StudioPro.ExtensionsAPI.Internal">
+      <HintPath>D:\ExtensionAPI\Mendix.StudioPro.ExtensionsAPI.Internal.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="manifest.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /y /s /i &quot;$(TargetDir)&quot; &quot;C:\Users\tanis\Mendix\TestApp-main\extensions\MyExtension\&quot;&#xD;&#xA;" />
+  </Target>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\tanis\source\repos\MyCompany.MyProject.MendixExtension\MyCompany.MyProject.MendixExtension\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\tanis\source\repos\MyCompany.MyProject.MendixExtension\MyCompany.MyProject.MendixExtension\.editorconfig" />
+  </ItemGroup>
+
+</Project>

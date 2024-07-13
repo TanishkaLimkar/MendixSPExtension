@@ -1,0 +1,280 @@
+.form-container {
+  height: 100vh;
+  width: 100vw;
+  background-color: #1e1e1e; 
+
+}
+.form-box {
+  display: flex;
+  flex-direction: column;
+  background: #2d2d2d;
+  padding-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+}
+.form-box h1 {
+  margin-top: 0%;
+  margin-left: 0%;
+  margin-right: 0%;
+  color: #ffffff; 
+  text-align: left;
+  font-size: 0.85em;
+  padding: 2px;
+  padding-top: 5px;
+}
+
+.form-box .header {
+  background-color: black;
+  height: 30px;
+  padding-top: 0px;
+  padding-left: 5px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.form-group p {
+  font-size: 0.85em;
+  color: #ffffff;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;  
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.text1 {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;  
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size:13.5px;
+  color:white;
+}
+
+.text1 a {
+  padding-left: 150px;
+  color: rgb(44, 122, 224);
+  
+}
+
+.text {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;  
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size:13.5px;
+  color:white;
+}
+
+.form-group label {
+  background: #2d2d2d;
+  color: white; 
+  text-align: left;
+  width: 150px; 
+}
+
+.horizontal-line {
+  border: none;
+  border-top: 1px solid #7a7676; 
+  margin: 20px 20px; 
+}
+
+.horizontal-line2 {
+  border: none;
+  border-top: 1px solid #222121; 
+  margin: 20px 20px; 
+}
+
+.form-group input {
+  padding: 4px;
+  box-sizing: border-box;
+  border: 1px solid #7a7676; 
+  border-radius: 4px;
+  background: #2d2d2d;
+  color: #ffffff;
+  flex: 1;
+
+}
+
+.form-group input:hover {
+  border-color: #ffffff; 
+}
+
+.form-group1{
+  display: flex;
+  flex-direction: column;
+  align-items:start;
+}
+
+.form-group1 label{
+  width: 400px;
+}
+
+label {
+  font-size:13.5px;
+}
+.form-group1 input{
+  width: 100%;
+  min-height: 60px;
+}
+.error-message {
+  color: #ff6347; 
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+  size: 4%;
+  font-size: 13.5px;
+}
+
+.form-buttons button {
+  width: 150px;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: rgb(57, 56, 56);
+  color: white;
+  border: 1px solid #938f8f;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.save {
+  padding-left:250px ;
+}
+.form-buttons button:hover {
+  background-color: #4f5050; 
+}
+
+.form-buttons button.disabled {
+  background-color: #444444; 
+  cursor: not-allowed;
+}
+
+.radio-buttons {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 175px;
+}
+
+.radio-buttons label {
+  margin-right: 20px;
+  color: white; 
+}
+
+.radio-buttons input {
+  margin-right: 5px;
+}
+
+.custom-radio {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid white; 
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  background-color: #2d2d2d; 
+}
+
+.custom-radio:checked {
+  background-color: #fff; 
+}
+
+.custom-radio:checked::before {
+  content: "";
+  width: 8px;  
+  height: 8px; 
+  border-radius: 50%;
+  background: white; 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.form-container .database-icons {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+
+}
+.form-group .database-icons
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.database-icons img {
+  width: 60px;
+  height: 55px;
+  cursor: pointer;
+  border: 1px solid  white;
+  border-radius: 2px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+.database-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.database-icons img.selected {
+  border-color: #007bff;
+
+}
+
+.form-group {
+  margin-bottom: 15px;
+
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.save .disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+
+.connection-status {
+  display: flex;
+  align-items: center;
+ padding-left: 30px;
+ color: white;
+}
+
+.connection-status.connected {
+  margin-left: 20px;
+  margin-right: 20px;
+  background-color: #314b30;
+  height: 30px;
+}
+
+.connection-status.failed {
+  margin-left: 20px;
+  margin-right: 20px;
+  background-color: #503232; 
+  height : 30px;
+}
+
+
